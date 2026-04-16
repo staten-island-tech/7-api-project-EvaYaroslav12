@@ -15,7 +15,7 @@ def GetHyrule(compendium):
      }
 
 
-hyrule = GetHyrule("moblin")
+hyrule = GetHyrule("horse")
 print(hyrule)
 # url = "https://botw-compendium.herokuapp.com/api/v3/compendium/all"
 
