@@ -5,20 +5,12 @@ def GetHyrule(compendium):
     if response.status_code != 200:
         print ('Error fetching data')
         return None
-    
+
     data = response.json()
-    return {
-        "name": data['name'],
-        "id": data["id"],
-        "category": data["category"],
-        "decription": data['description']
-     }
+    return data
 
-
-hyrule = GetHyrule("horse")
-print(hyrule)
-# url = "https://botw-compendium.herokuapp.com/api/v3/compendium/all"
-
-# response = requests.get(url)
-
-# print(response.json())
+hyrule = GetHyrule(input('What do  you want to see? (Name or ID number) '))
+print(hyrule['data']['name'])
+print(hyrule['data']['id'])
+print(hyrule['data']['category'])
+print(hyrule['data']['description'])
