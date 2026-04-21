@@ -47,5 +47,4 @@ font=("Arial", 14),
 command=get_reply)
 
 enter_button.place(x=400, y=45)
-# Keeps the window open and waiting for clicks or typing
 window.mainloop()
