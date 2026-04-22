@@ -37,6 +37,7 @@ def get_reply():
     name_label.config(text= (hyrule['data']['name']))
     description_label.config(text= (hyrule['data']['description']))
     img_path = (hyrule['data']['image'])
+    print(img_path)
     pil_image = Image.open(img_path)
     pil_image = pil_image.resize((300, 300)) 
     # print (hyrule)
