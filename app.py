@@ -9,8 +9,6 @@ def GetHyrule(compendium):
     data = response.json()
     return data
 
-
-
 import tkinter as tk
 from PIL import Image, ImageTk
 window = tk.Tk()
@@ -31,15 +29,23 @@ description_label = tk.Label(window, text="", font=("Arial", 9,),
 fg="black", wraplength=400,)
 description_label.pack(pady=10)
 
+image_label = tk.Label(window)
+image_label.pack(pady=10)
+
 def get_reply():
     # print(entry.get)
     hyrule = GetHyrule(entry.get())
     name_label.config(text= (hyrule['data']['name']))
     description_label.config(text= (hyrule['data']['description']))
-    img_path = (hyrule['data']['image'])
-    print(img_path)
-    pil_image = Image.open(img_path)
-    pil_image = pil_image.resize((300, 300)) 
+    from io import BytesIO
+    img_url = hyrule['data']['image']
+    response = requests.get(img_url)
+    pil_image = Image.open(BytesIO(response.content))
+    pil_image = pil_image.resize((250,250))
+    tk_image = ImageTk.PhotoImage(pil_image)
+    image_label.config(image=tk_image)
+    image_label.image = tk_image
+
     # print (hyrule)
     # print(hyrule['data']['name'])
     # print(hyrule['data']['id'])
