@@ -12,6 +12,7 @@ def GetHyrule(compendium):
 
 
 import tkinter as tk
+from PIL import Image, ImageTk
 window = tk.Tk()
 window.title("Hyrule Compendium") 
 window.geometry("450x600") 
@@ -35,6 +36,9 @@ def get_reply():
     hyrule = GetHyrule(entry.get())
     name_label.config(text= (hyrule['data']['name']))
     description_label.config(text= (hyrule['data']['description']))
+    img_path = (hyrule['data']['image'])
+    pil_image = Image.open(img_path)
+    pil_image = pil_image.resize((300, 300)) 
     # print (hyrule)
     # print(hyrule['data']['name'])
     # print(hyrule['data']['id'])
