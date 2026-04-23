@@ -13,42 +13,48 @@ import tkinter as tk
 from PIL import Image, ImageTk
 window = tk.Tk()
 window.title("Hyrule Compendium") 
-window.geometry("450x600") 
+window.geometry("1200x900") 
 window.resizable(False, False) 
 
-prompt = tk.Label(window, text="Input Name or ID",
+prompt = tk.Label(window, text="Input Name or ID", 
 font=("Arial", 14))
-prompt.pack(pady=10) 
-entry = tk.Entry(window, font=("Arial", 14), width=30)
-entry.pack(pady=5)
+prompt.place(y=10, x=150) 
+entry = tk.Entry(window, font=("Arial", 14), width=40)
+entry.place(x=20,y=52)
 
-name_label = tk.Label(window, text="", font=("Arial", 14, "bold"),
+name_label = tk.Label(window, text="", font=("Arial", 20, "bold"),
 fg="black")
-name_label.pack(pady=10)
-description_label = tk.Label(window, text="", font=("Arial", 9,),
-fg="black", wraplength=400,)
-description_label.pack(pady=10)
+name_label.pack(pady=100)
+
+description_label = tk.Label(window, text="", font=("Arial", 11,),
+fg="black", wraplength=600,)
+description_label.place(x=530, y=155)
+
+Category_label = tk.Label(window, text="", font=("Arial", 20, "bold"),
+fg="black")
+Category_label.place(x=800, y=52)
 
 image_label = tk.Label(window)
-image_label.pack(pady=10)
+image_label.place(x=50, y=150)
 
 def get_reply():
     # print(entry.get)
     hyrule = GetHyrule(entry.get())
-    name_label.config(text= (hyrule['data']['name']))
+    name_label.config(text= (hyrule['data']['name'], hyrule['data']['id']))
     description_label.config(text= (hyrule['data']['description']))
+    Category_label.config(text= (hyrule['data']['category']))
+
     from io import BytesIO
     img_url = hyrule['data']['image']
     response = requests.get(img_url)
     pil_image = Image.open(BytesIO(response.content))
-    pil_image = pil_image.resize((250,250))
+    pil_image = pil_image.resize((450, 450))
     tk_image = ImageTk.PhotoImage(pil_image)
     image_label.config(image=tk_image)
     image_label.image = tk_image
 
     # print (hyrule)
-    # print(hyrule['data']['name'])
-    # print(hyrule['data']['id'])
+
     # print(hyrule['data']['category'])
     # print(hyrule['data']['description'])
 
@@ -57,5 +63,5 @@ font=("Arial", 14),
 
 command=get_reply)
 
-enter_button.place(x=400, y=45)
+enter_button.place(x=480, y=45)
 window.mainloop()
