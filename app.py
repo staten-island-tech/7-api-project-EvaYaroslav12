@@ -15,6 +15,15 @@ window = tk.Tk()
 window.title("Hyrule Compendium") 
 window.geometry("1200x900") 
 window.resizable(False, False) 
+# window.configure(bg='#716fc2')
+
+from tkinter import font
+import pyglet
+import os
+# font_path = os.path.join(os.path.dirname(__file__), 'totk.ttf')
+# pyglet.font.add_file(font_path)
+# totk_font_family = "The Legend of Zelda"
+# custom_font = font.Font(family=totk_font_family)
 
 prompt = tk.Label(window, text="Input Name or ID", 
 font=("Arial", 14))
@@ -22,11 +31,11 @@ prompt.place(y=10, x=150)
 entry = tk.Entry(window, font=("Arial", 14), width=40)
 entry.place(x=20,y=52)
 
-name_label = tk.Label(window, text="", font=("Arial", 20, "bold"),
+name_label = tk.Label(window, text="", font=("Custom_Font", 20),
 fg="black")
 name_label.pack(pady=100)
 
-description_label = tk.Label(window, text="", font=("Arial", 11,),
+description_label = tk.Label(window, text="", font=("Arial", 13,),
 fg="black", wraplength=600,)
 description_label.place(x=530, y=155)
 
@@ -43,7 +52,7 @@ def get_reply():
     name_label.config(text= (hyrule['data']['name'], hyrule['data']['id']))
     description_label.config(text= (hyrule['data']['description']))
     Category_label.config(text= (hyrule['data']['category']))
-
+ 
     from io import BytesIO
     img_url = hyrule['data']['image']
     response = requests.get(img_url)
