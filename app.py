@@ -15,7 +15,7 @@ window = tk.Tk()
 window.title("Hyrule Compendium") 
 window.geometry("1000x900") 
 window.resizable(False, False) 
-window.configure(bg='#402B30')
+# window.configure(bg='#402B30')
 
 from tkinter import font
 import pyglet
