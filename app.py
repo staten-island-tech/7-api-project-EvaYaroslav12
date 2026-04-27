@@ -15,7 +15,7 @@ window = tk.Tk()
 window.title("Hyrule Compendium") 
 window.geometry("1000x900") 
 window.resizable(False, False) 
-window.configure(bg='#402B30')
+# window.configure(bg='#402B30')
 
 from tkinter import font
 import pyglet
@@ -70,6 +70,9 @@ effects_label = tk.Label(window, text="", font=("Arial", 14,),
 fg="black")
 effects_label.place(x=520, y=620)
 
+background_image_label = tk.Label(window)
+background_image_label.place(x=0, y=550)
+
 def get_reply():
     # print(entry.get)
     hyrule = GetHyrule(entry.get())
@@ -87,6 +90,14 @@ def get_reply():
     tk_image = ImageTk.PhotoImage(pil_image)
     image_label.config(image=tk_image)
     image_label.image = tk_image
+
+    background_url = f'https://images3.alphacoders.com/137/thumb-350-1370190.webp'
+    responsebg = requests.get(background_url)
+    pil_imagebg = Image.open(BytesIO(responsebg.content))
+    pil_imagebg = pil_imagebg.resize((1000, 400))
+    tk_imagebg = ImageTk.PhotoImage(pil_imagebg)
+    background_image_label.config(image=tk_imagebg)
+    background_image_label.image = tk_imagebg
 
     common_locations_label.config(text = "Common Locations")
     locations = hyrule['data'].get('common_locations', [])
