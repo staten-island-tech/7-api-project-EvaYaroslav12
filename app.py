@@ -113,7 +113,7 @@ def get_reply():
     else:
         common_places_label.config(text="\n\n".join(locations))
 
-    if hyrule['data']['category'] == "creatures" or "monster" or "treasure":
+    if hyrule['data']['category'] == "creatures" or "monsters" or "treasure":
         Droppable_items_label.config(text = "DROPPABLE ITEMS")
         drops = hyrule['data'].get('drops', [])
         drops_label.config(text="\n\n".join(drops))
@@ -121,9 +121,9 @@ def get_reply():
             drops_label.config(text="".join('None'))
         if hyrule['data']['category'] == "creatures":
             animal_url = f'https://cdn.discordapp.com/attachments/1074781218899513465/1498374454802255932/Screenshot_2026-04-27_130446.png?ex=69f0ed74&is=69ef9bf4&hm=aade76c2d6904538074b50974e329f331026e6200a0ab757a403c30d3e71188b&'
-        if hyrule['data']['category'] == "monster":
+        if hyrule['data']['category'] == "monsters":
             animal_url = f'https://cdn.discordapp.com/attachments/1074781218899513465/1498455142142443620/image.png?ex=69f13899&is=69efe719&hm=8e9af6edf17af4404fbc6c0f545066157413f5798cf5fedc62d09f83baed02cd&'
-        if hyrule['data']['category'] == "treasue":
+        if hyrule['data']['category'] == "treasure":
             animal_url = f'https://cdn.discordapp.com/attachments/1074781218899513465/1498455894445527080/image.png?ex=69f1394d&is=69efe7cd&hm=f4eef3be288b83638cff560deeccbc82bba19772900199abd8e4faf98e69e271&'
     else:
         Droppable_items_label.config(text="")
@@ -140,7 +140,7 @@ def get_reply():
     else:
         Cooking_effects_label.config(text="")
         effects_label.config(text="")
-    if hyrule['data']['category'] == "weapons":
+    if hyrule['data']['category'] == "equipment":
         animal_url = f'https://cdn.discordapp.com/attachments/1074781218899513465/1498456334142537808/image.png?ex=69f139b6&is=69efe836&hm=265034e7581c45319def17dc14cb6ee8561cf32dfe40024fb30d3f6b6cc16400&'
 
     responsean = requests.get(animal_url)
